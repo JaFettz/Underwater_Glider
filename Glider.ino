@@ -11,11 +11,11 @@ volatile byte Encendido = HIGH;
 
 unsigned long previousMillis = 0;
 
-const int Tiempo_motores = 10000;  //5 segundos
+const int Tiempo_motores = 1500;  //15 segundos
 const int Tiempo_sumergir = 10000;  //10 segundos
 
-const int input1 = 10;
-const int input2 = 11;
+const int input1 = 11;//11
+const int input2 = 10;//10
 
 int ledState = LOW;
 const long interval = 1000;
@@ -72,14 +72,17 @@ void loop() {
     ledRGB_Write(0,0,255);  //LED es azul
     delay(Tiempo_sumergir*1.1); //espera mas tiempo que el de sumergir
     
-    
+    break;
     //tiempo
   }
-  if(digitalRead(boton_switch)!= HIGH){
+  if(digitalRead(boton_switch)!= HIGH && Activado== false){
     ledblink();
   }
   if(digitalRead(boton_switch)== HIGH){
     Activado=true;
+  }
+  if(digitalRead(boton_switch)== HIGH && Activado== true){
+    Activado=false;
   }
 
 }
