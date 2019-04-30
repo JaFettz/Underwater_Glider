@@ -6,6 +6,7 @@ const int Blue= 3;
 
 const int Enable= 12;
 boolean Activo = true;
+boolean Activado = false;
 volatile byte Encendido = HIGH;
 
 unsigned long previousMillis = 0;
@@ -49,7 +50,7 @@ void setup() {
 
 void loop() {
     apagar();
-  while(digitalRead(boton_switch)!= HIGH){    //correr el codigo mientras no tenga señal
+  while(Activado){    //correr el codigo mientras no tenga señal
     
     chupar_agua();  //succiona agua
     Serial.println("chupar agua");
@@ -74,8 +75,11 @@ void loop() {
     
     //tiempo
   }
-  if(digitalRead(boton_switch)== HIGH){
+  if(digitalRead(boton_switch)!= HIGH){
     ledblink();
+  }
+  if(digitalRead(boton_switch)== HIGH){
+    Activado=true;
   }
 
 }
