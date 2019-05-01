@@ -11,11 +11,11 @@ volatile byte Encendido = HIGH;
 
 unsigned long previousMillis = 0;
 
-const int Tiempo_motores = 1500;  //15 segundos
+const int Tiempo_motores = 15000;  //5 segundos
 const int Tiempo_sumergir = 10000;  //10 segundos
 
-const int input1 = 11;//11
-const int input2 = 10;//10
+const int input1 = 11;//10
+const int input2 = 10;//11
 
 int ledState = LOW;
 const long interval = 1000;
@@ -59,7 +59,7 @@ void loop() {
 
     apagar();
    
-    ledRGB_Write(0,0,0); //LED es aqua
+    ledRGB_Write(255,255,255); //LED se apaga
     delay(Tiempo_sumergir); // espera 10 segundos
     
     sacar_agua(); //saca agua
@@ -69,7 +69,7 @@ void loop() {
 
     apagar();
 
-    ledRGB_Write(0,0,255);  //LED es azul
+    ledRGB_Write(255,255,0);  //LED es azul
     delay(Tiempo_sumergir*1.1); //espera mas tiempo que el de sumergir
     
     break;
@@ -88,17 +88,17 @@ void loop() {
 }
 
 void chupar_agua(){
-  ledRGB_Write(0,200,0);  //LED es verde
+  ledRGB_Write(255,55,255);  //LED es verde
   digitalWrite(Enable,HIGH);
-  digitalWrite(10,HIGH);
-  digitalWrite(11,LOW);
+  digitalWrite(input1,HIGH);
+  digitalWrite(input2,LOW);
 }
 
 void sacar_agua(){
-  ledRGB_Write(255,0,0);  //LED es rojo
+  ledRGB_Write(0,255,255);  //LED es rojo
   digitalWrite(Enable,HIGH);
-  digitalWrite(10,LOW);
-  digitalWrite(11,HIGH);
+  digitalWrite(input1,LOW);
+  digitalWrite(input2,HIGH);
   
 }
 
@@ -117,9 +117,9 @@ void apagar(){
 }
 
 void ledRGB_Write(byte R, byte G, byte B){
-  analogWrite(Red, R);
-  analogWrite(Green, G);
-  analogWrite(Blue, B);
+  analogWrite(Red, 255-R);
+  analogWrite(Green, 255-G);
+  analogWrite(Blue, 255-B);
 }
 
 void ledblink(){
@@ -139,4 +139,3 @@ void ledblink(){
     }
   }
 }
-
