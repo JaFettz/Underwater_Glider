@@ -1,5 +1,5 @@
 # Underwater_Glider
-Code for my College protect
+Code for my College project
 
 Prototype:
 ![prototype](https://github.com/JafsZero/Underwater_Glider/blob/master/prototype.jpg)
